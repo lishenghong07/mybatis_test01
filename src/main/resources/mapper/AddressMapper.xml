@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.hong.mapper.AddressMapper">
+    <resultMap id="BaseMapper" type="com.qf.hong.entity.Address">
+    <id property="addrId" column="addr_id"/>
+    <result property="addrProvince" column="addr_province"/>
+    <result property="addrCity" column="addr_city"/>
+    <result property="addrArea" column="addr_area"/>
+    <result property="addrDetails" column="addr_details"/>
+    <result property="addrAgree" column="addr_agree"/>
+</resultMap>
+    <select id="selectByUserId" resultMap="BaseMapper">
+        select addr_id,addr_province,addr_city,addr_area,addr_details,addr_agree from address where addr_status=0 and addr_user_id=#{userId}
+    </select>
+    <insert id="insert">
+        insert into address(addr_user_id,addr_province,addr_city,addr_area,addr_details,addr_agree) values (#{addr.addrUserId},#{addr.addrProvince},#{addr.addrCity},#{addr.addrArea},#{addr.addrDetails},#{addr.addrAgree})
+    </insert>
+</mapper>

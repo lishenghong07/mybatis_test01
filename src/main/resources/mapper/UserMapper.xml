@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.hong.mapper.UserMapper">
+    <resultMap id="BaseMapper" type="com.qf.hong.entity.User">
+        <id property="userId" column="user_id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="userPhone" column="user_phone"></result>
+    </resultMap>
+
+    <insert id="insert" keyProperty="user.userId" useGeneratedKeys="true">
+        insert into user(user_name,user_phone) values(#{user.userName},#{user.userPhone})
+    </insert>
+
+    <select id="selectById" resultMap="BaseMapper">
+        select user_id,user_name,user_phone from user where user_id=#{userId}
+    </select>
+
+</mapper>
